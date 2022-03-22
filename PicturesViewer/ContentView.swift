@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var images:  Array<UIImage>? = []
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        HStack{
+            VStack{
+                ListPicturesView(images: $images)
+                ButtonView(images: $images)
+            }
+        }
     }
 }
 
