@@ -11,6 +11,7 @@ struct ListPicturesView: View {
     @Binding var images : Array<UIImage>!
     @Binding var imageIndex : Int
 
+    @State var isFullScreen : Bool = false;
     var body: some View {
         if images.count > 0 {
             HStack {
@@ -24,6 +25,18 @@ struct ListPicturesView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 200, maxHeight: 200)
+                    .fullScreenCover(isPresented: $isFullScreen){
+                        Image(uiImage: images[imageIndex])
+                            .frame(maxWidth: 200, maxHeight: 200)
+                        Button(action: {isFullScreen = false}) {
+                            Label("Back", systemImage: "chevron.down.square.fill")
+                        }
+                    }
+                    .onTapGesture {
+                        isFullScreen = true
+                        print(isFullScreen)
+                        
+                    }
                
                 Button(action: plusOne){
                     Image(systemName: "chevron.compact.right")
