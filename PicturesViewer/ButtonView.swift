@@ -10,6 +10,7 @@ import SwiftUI
 struct ButtonView: View {
     @State private var showPhotoSheet = false
     @Binding var images:  Array<UIImage>?
+    @Binding var imageIndex : Int
 
     var body: some View {
         VStack {
@@ -24,6 +25,7 @@ struct ButtonView: View {
                 }
                   if imagesOrNil != nil {
                       images = imagesOrNil
+                      imageIndex = 0
                   }
               }
             }
@@ -35,7 +37,10 @@ struct ButtonView: View {
 
 struct ButtonView_Previews: PreviewProvider {
     @State static var prev: Array<UIImage>? = []
+    @State static var index = 0
+
     static var previews: some View {
-        ButtonView(images : $prev)
+        ButtonView(images : $prev, imageIndex: $index)
     }
 }
+

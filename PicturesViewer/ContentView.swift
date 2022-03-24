@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var images:  Array<UIImage>? = []
+    @State var imageIndex : Int = 0
 
     var body: some View {
         HStack{
             VStack{
-                ListPicturesView(images: $images)
-                ButtonView(images: $images)
+                ListPicturesView(images: $images, imageIndex: $imageIndex)
+                ButtonView(images: $images, imageIndex: $imageIndex)
             }
         }
     }
