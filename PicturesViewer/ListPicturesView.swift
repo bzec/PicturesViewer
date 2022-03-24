@@ -26,11 +26,7 @@ struct ListPicturesView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 200, maxHeight: 200)
                     .fullScreenCover(isPresented: $isFullScreen){
-                        Image(uiImage: images[imageIndex])
-                            .frame(maxWidth: 200, maxHeight: 200)
-                        Button(action: {isFullScreen = false}) {
-                            Label("Back", systemImage: "chevron.down.square.fill")
-                        }
+                        ModalImageView(image : images[imageIndex])
                     }
                     .onTapGesture {
                         isFullScreen = true
