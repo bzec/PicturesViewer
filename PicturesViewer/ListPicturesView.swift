@@ -27,6 +27,7 @@ struct ListPicturesView: View {
                     .frame(maxWidth: 200, maxHeight: 200)
                     .fullScreenCover(isPresented: $isFullScreen){
                         ModalImageView(image : images[imageIndex])
+                            
                     }
                     .onTapGesture {
                         isFullScreen = true
