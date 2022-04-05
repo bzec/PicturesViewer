@@ -17,7 +17,6 @@
 		33B2B21027E9120000F8D6BB /* ListPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2B20F27E9120000F8D6BB /* ListPicturesView.swift */; };
 		33B2B21427E914F800F8D6BB /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2B21327E914F800F8D6BB /* ButtonView.swift */; };
 		33B2B21827E91E3F00F8D6BB /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2B21727E91E3F00F8D6BB /* PhotoPicker.swift */; };
-		33D0C90927EA5ADB00A45147 /* ItemPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0C90827EA5ADB00A45147 /* ItemPictureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		33B2B20F27E9120000F8D6BB /* ListPicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPicturesView.swift; sourceTree = "<group>"; };
 		33B2B21327E914F800F8D6BB /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		33B2B21727E91E3F00F8D6BB /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
-		33D0C90827EA5ADB00A45147 /* ItemPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPictureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +50,6 @@
 				33B29C8227F4F64E00910A69 /* ImagesStore.swift */,
 				33B29C8027F4F25200910A69 /* ImagesDefault.swift */,
 				3306F89827ED1A5000EF602D /* ModalImageView.swift */,
-				33D0C90827EA5ADB00A45147 /* ItemPictureView.swift */,
 				33B2B20027E9112E00F8D6BB /* PicturesViewer */,
 				33B2B1FF27E9112E00F8D6BB /* Products */,
 			);
@@ -165,7 +162,6 @@
 				33B2B21427E914F800F8D6BB /* ButtonView.swift in Sources */,
 				33B29C8327F4F64E00910A69 /* ImagesStore.swift in Sources */,
 				33B2B20427E9112E00F8D6BB /* ContentView.swift in Sources */,
-				33D0C90927EA5ADB00A45147 /* ItemPictureView.swift in Sources */,
 				33B2B20227E9112E00F8D6BB /* PicturesViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
