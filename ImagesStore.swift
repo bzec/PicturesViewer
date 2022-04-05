@@ -30,13 +30,13 @@ class ImageStore: ObservableObject {
                     return
                 }
                 
-                let listImagesData = try JSONDecoder().decode(Array<Data>.self, from: file.availableData)
+                let listImagesDataBase64 = try JSONDecoder().decode(Array<String>.self, from: file.availableData)
 
                 DispatchQueue.main.async {
                     
                     var listImages : Array<UIImage> = []
-                    listImagesData.forEach { im in
-                        listImages.append(UIImage(data: im)!)
+                    listImagesDataBase64.forEach { im in
+                        listImages.append(UIImage(data: Data(base64Encoded: im, options: .ignoreUnknownCharacters)!)!)
                     }
                     completion(.success(listImages))
                 }
@@ -53,10 +53,11 @@ class ImageStore: ObservableObject {
             do {
                 print("on encode les images")
 
-                var imagesEncode: [Data] = []
+                var imagesEncode: [String] = []
                 images.forEach { image in
-                    let imageData: Data = image.pngData()!
-                    imagesEncode.append(imageData)
+                    print("image to convert")
+                    let imgBase64: String = image.jpegData(compressionQuality: 1)!.base64EncodedString()
+                    imagesEncode.append(imgBase64)
                 }
                 let data = try JSONEncoder().encode(imagesEncode)
                 print("on get le outfile")
