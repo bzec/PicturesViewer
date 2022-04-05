@@ -56,7 +56,7 @@ class ImageStore: ObservableObject {
                 var imagesEncode: [String] = []
                 images.forEach { image in
                     print("image to convert")
-                    let imgBase64: String = image.jpegData(compressionQuality: 1)!.base64EncodedString()
+                    let imgBase64: String = image.jpegData(compressionQuality: 1)!.base64EncodedString(options: .lineLength64Characters)
                     imagesEncode.append(imgBase64)
                 }
                 let data = try JSONEncoder().encode(imagesEncode)

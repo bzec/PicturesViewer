@@ -18,6 +18,9 @@ struct PicturesViewerApp: App {
                     if case .failure(let error) = result {
                         fatalError(error.localizedDescription)
                     }
+                    if case .success(_) = result {
+                        print(result)
+                    }
                 }
                 
             }
