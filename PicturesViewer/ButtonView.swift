@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ButtonView: View {
     @State private var showPhotoSheet = false
-    @Binding var images:  Array<UIImage>?
+    @Binding var images:  Array<UIImage>
     @Binding var imageIndex : Int
+
+    let saveAction: ()->Void
 
     var body: some View {
         VStack {
@@ -24,8 +26,9 @@ struct ButtonView: View {
                   print(error)
                 }
                   if imagesOrNil != nil {
-                      images = imagesOrNil
+                      images = imagesOrNil!
                       imageIndex = 0
+                      saveAction()
                   }
               }
             }
@@ -36,11 +39,11 @@ struct ButtonView: View {
 }
 
 struct ButtonView_Previews: PreviewProvider {
-    @State static var prev: Array<UIImage>? = []
+    @State static var prev: Array<UIImage> = []
     @State static var index = 0
 
     static var previews: some View {
-        ButtonView(images : $prev, imageIndex: $index)
+        ButtonView(images : $prev, imageIndex: $index, saveAction: {})
     }
 }
 

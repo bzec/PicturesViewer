@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListPicturesView: View {
-    @Binding var images : Array<UIImage>!
+    @Binding var images : Array<UIImage>
     @Binding var imageIndex : Int
 
     @State var isFullScreen : Bool = false;
@@ -58,7 +58,7 @@ struct ListPicturesView: View {
 }
 
 struct ListPicturesView_Previews: PreviewProvider {
-    @State static var prev: Array<UIImage>? = []
+    @State static var prev: Array<UIImage> = []
     @State static var index = 0
     
     static var previews: some View {
