@@ -14,15 +14,28 @@ struct ModalImageView: View {
     
     @State var scale = 1.0
     @State private var lastScale = 1.0
+    
+    @State private var dragged = CGSize.zero
+    @State private var accumulated = CGSize.zero
 
     private let minScale = 1.0
     private let maxScale = 5.0
     
     var body: some View {
+
         Image(uiImage: image)
             .resizable()
               .aspectRatio(contentMode: .fit)
               .scaleEffect(scale)
+              .offset(x: dragged.width, y: dragged.height)
+              .gesture(DragGesture()
+                .onChanged{ value in
+                    dragged = CGSize(width: value.translation.width + accumulated.width, height: value.translation.height + accumulated.height)
+              }
+              .onEnded{ value in
+                dragged = CGSize(width: value.translation.width + accumulated.width, height: value.translation.height + accumulated.height)
+                accumulated = dragged
+              })
               .gesture(MagnificationGesture()
                 .onChanged { state in
                     adjustScale(from: state)
