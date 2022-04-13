@@ -23,7 +23,7 @@ struct ContentView: View {
                 }
                 Button(action: resetList) {
                   Label("Supprimer la liste", systemImage: "clear.fill")
-                }
+                }.disabled(images.count == 0)
             }
         }
         /*
