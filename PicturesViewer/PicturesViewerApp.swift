@@ -11,9 +11,10 @@ import SwiftUI
 struct PicturesViewerApp: App {
     @StateObject private var store = ImageStore()
 
+    // https://www.youtube.com/watch?v=WZOvroeUuxI&ab_channel=Kavsoft
     var body: some Scene {
         WindowGroup {
-            ContentView(images: $store.images){
+            ContentView(images: $store.images, saveAction: {
                 ImageStore.save(images: store.images) { result in
                     if case .failure(let error) = result {
                         fatalError(error.localizedDescription)
@@ -23,7 +24,17 @@ struct PicturesViewerApp: App {
                     }
                 }
                 
-            }
+            }, resetAction: {
+                ImageStore.delete() { result in
+                    if case .failure(let error) = result {
+                        fatalError(error.localizedDescription)
+                    }
+                    if case .success(_) = result {
+                        print(result)
+                        store.images = []
+                    }
+                }
+            })
             .onAppear {
                     ImageStore.load { result in
                         switch result {

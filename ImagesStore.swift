@@ -48,6 +48,20 @@ class ImageStore: ObservableObject {
         }
     }
     
+    static func delete(completion: @escaping (Result<String, Error>)->Void) {
+        do {
+            let fileURL = try fileURL()
+            try FileManager.default.removeItem(at: fileURL)
+            DispatchQueue.main.async {
+                completion(.success("deleted"))
+            }
+        } catch {
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     static func save(images: Array<UIImage>, completion: @escaping (Result<Int, Error>)->Void) {
         DispatchQueue.global(qos: .background).async {
             do {

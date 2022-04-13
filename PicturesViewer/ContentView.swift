@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var imageIndex : Int = 0
     @Environment(\.scenePhase) private var scenePhase
     let saveAction: ()->Void
+    let resetAction: ()->Void
 
     var body: some View {
         HStack{
@@ -19,6 +20,9 @@ struct ContentView: View {
                 ListPicturesView(images: $images, imageIndex: $imageIndex)
                 ButtonView(images: $images, imageIndex: $imageIndex) {
                     saveAction()
+                }
+                Button(action: resetList) {
+                  Label("Supprimer la liste", systemImage: "clear.fill")
                 }
             }
         }
@@ -28,12 +32,17 @@ struct ContentView: View {
         }
          */
     }
+    
+    func resetList() {
+        print("reset")
+        resetAction()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     @State static var prev: Array<UIImage> = []
 
     static var previews: some View {
-        ContentView(images: $prev, saveAction: {})
+        ContentView(images: $prev, saveAction: {}, resetAction: {})
     }
 }
