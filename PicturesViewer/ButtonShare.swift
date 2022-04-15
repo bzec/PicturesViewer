@@ -16,7 +16,7 @@ struct ButtonShare: View {
                 sheet.toggle()
                 
             }) {
-            Label("Share photos", systemImage: "photo.fill")
+            Label("Share photos", systemImage: "square.and.arrow.up")
           }
         }
         .sheet(isPresented: $sheet, content: {

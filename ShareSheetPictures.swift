@@ -6,7 +6,7 @@
 //
 import Foundation
 import SwiftUI
-struct ShareSheetPictures  : UIViewControllerRepresentable {
+struct ShareSheetPictures : UIViewControllerRepresentable {
     
     var items : [UIImage]
     
