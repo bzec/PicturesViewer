@@ -15,39 +15,51 @@ struct ModalImageView: View {
     @State var scale = 1.0
     @State private var lastScale = 1.0
     
-    @State private var dragged = CGSize.zero
-    @State private var accumulated = CGSize.zero
-
     private let minScale = 1.0
     private let maxScale = 5.0
-    
-    var body: some View {
+    @State var currentOffset = CGSize.zero
+    @State var previousOffset = CGSize.zero
 
-        Image(uiImage: image)
-            .resizable()
-              .aspectRatio(contentMode: .fit)
-              .scaleEffect(scale)
-              .offset(x: dragged.width, y: dragged.height)
-              .gesture(DragGesture()
-                .onChanged{ value in
-                    dragged = CGSize(width: value.translation.width + accumulated.width, height: value.translation.height + accumulated.height)
-              }
-              .onEnded{ value in
-                dragged = CGSize(width: value.translation.width + accumulated.width, height: value.translation.height + accumulated.height)
-                accumulated = dragged
-              })
-              .gesture(MagnificationGesture()
-                .onChanged { state in
-                    adjustScale(from: state)
-                }
-                .onEnded { state in
-                    withAnimation {
-                        validateScaleLimits()
+    var body: some View {
+        
+        GeometryReader { geometry in // here you'll have size and frame
+            
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .scaleEffect(scale)
+                .offset(x: self.currentOffset.width, y: self.currentOffset.height)
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        
+                        let deltaX = value.translation.width - self.previousOffset.width
+                        let deltaY = value.translation.height - self.previousOffset.height
+                        self.previousOffset.width = value.translation.width
+                        self.previousOffset.height = value.translation.height
+                        
+                        let newOffsetWidth = self.currentOffset.width + deltaX / self.scale
+                        if newOffsetWidth <= geometry.size.width - 150.0 && newOffsetWidth > -150.0 {
+                            self.currentOffset.width = self.currentOffset.width + deltaX / self.scale
+                        }
+                        
+                        let newOffsetHeight = self.currentOffset.height + deltaY / self.scale
+                        if newOffsetHeight <= geometry.size.height - 180.0 && newOffsetHeight > -180.0 {
+                            self.currentOffset.height = self.currentOffset.height + deltaY / self.scale }
                     }
-                    lastScale = 1.0
-                    
-                }
-         )
+                    .onEnded { value in self.previousOffset = CGSize.zero })
+                .gesture(MagnificationGesture()
+                    .onChanged { state in
+                        adjustScale(from: state)
+                    }
+                    .onEnded { state in
+                        withAnimation {
+                            validateScaleLimits()
+                        }
+                        lastScale = 1.0
+                        
+                    }
+                )
+        }
         Text("Close Modal")
             .onTapGesture {
                 // change scale value to fix animation image bug when we dismiss value
@@ -55,7 +67,7 @@ struct ModalImageView: View {
                 presentationMode.wrappedValue.dismiss()
             }
     }
-
+    
     func adjustScale(from state: MagnificationGesture.Value) {
         let delta = state / lastScale
         scale *= delta
