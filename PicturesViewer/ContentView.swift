@@ -28,15 +28,9 @@ struct ContentView: View {
                 
             }
         }
-        /*
-        .onChange(of: scenePhase) { phase in
-            if phase == .inactive { saveAction() }
-        }
-         */
     }
     
     func resetList() {
-        print("reset")
         resetAction()
     }
 }
