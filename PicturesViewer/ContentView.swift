@@ -16,7 +16,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack{
-                ListPicturesView(images: $images, imageIndex: $imageIndex)
+            ListPicturesView(images: $images, imageIndex: $imageIndex)
             VStack {
                     ButtonView(images: $images, imageIndex: $imageIndex) {
                         saveAction()
@@ -29,9 +29,9 @@ struct ContentView: View {
                     .buttonBorderShape(.roundedRectangle(radius: 5))
                     .controlSize(.large)
                     ButtonShare(images: $images)
-            }.frame(maxHeight: .infinity, alignment: .bottom)
-                .padding()
-        }
+            }
+        }.frame(maxHeight: .infinity, alignment: .bottom)
+         .padding()
     }
     
     func resetList() {
