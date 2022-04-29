@@ -19,6 +19,11 @@ struct ButtonView: View {
           Button(action: { showPhotoSheet = true }) {
             Label("Choose photo", systemImage: "photo.fill")
           }
+          .edgesIgnoringSafeArea(.all)
+          .tint(.blue)
+          .buttonStyle(.borderedProminent)
+          .buttonBorderShape(.roundedRectangle(radius: 5))
+          .controlSize(.large)
           .fullScreenCover(isPresented: $showPhotoSheet) {
             PhotoPicker(filter: .images, limit: 10) { results in
               PhotoPicker.convertToUIImageArray(fromResults: results) { (imagesOrNil, errorOrNil) in
@@ -32,7 +37,6 @@ struct ButtonView: View {
                   }
               }
             }
-            .edgesIgnoringSafeArea(.all)
           }
         }
     }

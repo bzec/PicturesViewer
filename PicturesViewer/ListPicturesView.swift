@@ -20,11 +20,12 @@ struct ListPicturesView: View {
                     Text("")
                         .padding()
                 }
+                Spacer()
 
                 Image(uiImage: images[imageIndex])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 200, maxHeight: 200)
+                    .frame(maxWidth: 400, maxHeight: 400)
                     .fullScreenCover(isPresented: $isFullScreen){
                         ModalImageView(image : images[imageIndex])
                             
@@ -34,7 +35,8 @@ struct ListPicturesView: View {
                         print(isFullScreen)
                         
                     }
-               
+                Spacer()
+
                 Button(action: plusOne){
                     Image(systemName: "chevron.compact.right")
                     Text("")

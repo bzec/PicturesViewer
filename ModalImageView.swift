@@ -13,16 +13,29 @@ struct ModalImageView: View {
 
     var body: some View {
 
-        VStack {
+        ZStack {
             ZoomableScrollView {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            Text("Close Modal")
-                .onTapGesture {
-                    presentationMode.wrappedValue.dismiss()
-                }
+            VStack {
+                Spacer()
+                HStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                    Image(systemName: "arrow.down")
+                    .frame(width: 35, height: 35)
+        
+                    }
+                    .tint(.blue)
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle(radius: 25))
+
+                    Spacer()
+                }.padding()
+          }
         }
     }
 

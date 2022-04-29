@@ -19,6 +19,10 @@ struct ButtonShare: View {
             Label("Share photos", systemImage: "square.and.arrow.up")
           }
         }
+        .tint(.blue)
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.roundedRectangle(radius: 5))
+        .controlSize(.large)
         .sheet(isPresented: $sheet, content: {
             ShareSheetPictures(items: images)
         })

@@ -15,18 +15,22 @@ struct ContentView: View {
     let resetAction: ()->Void
 
     var body: some View {
-        HStack{
-            VStack{
+        VStack{
                 ListPicturesView(images: $images, imageIndex: $imageIndex)
-                ButtonView(images: $images, imageIndex: $imageIndex) {
-                    saveAction()
-                }
-                Button(action: resetList) {
-                  Label("Supprimer la liste", systemImage: "clear.fill")
-                }.disabled(images.count == 0)
-                ButtonShare(images: $images)
-                
-            }
+            VStack {
+                    ButtonView(images: $images, imageIndex: $imageIndex) {
+                        saveAction()
+                    }
+                    Button(action: resetList) {
+                      Label("Supprimer la liste", systemImage: "clear.fill")
+                    }.disabled(images.count == 0)
+                    .tint(.blue)
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle(radius: 5))
+                    .controlSize(.large)
+                    ButtonShare(images: $images)
+            }.frame(maxHeight: .infinity, alignment: .bottom)
+                .padding()
         }
     }
     
