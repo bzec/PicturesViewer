@@ -17,7 +17,6 @@ struct ListPicturesView: View {
             HStack {
                 Button(action: minusOne){
                     Image(systemName: "chevron.compact.left")
-                    Text("")
                         .padding()
                 }
                 Spacer()
@@ -25,7 +24,6 @@ struct ListPicturesView: View {
                 Image(uiImage: images[imageIndex])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 400, maxHeight: 400)
                     .fullScreenCover(isPresented: $isFullScreen){
                         ModalImageView(image : images[imageIndex])
                             
@@ -39,7 +37,7 @@ struct ListPicturesView: View {
 
                 Button(action: plusOne){
                     Image(systemName: "chevron.compact.right")
-                    Text("")
+                        .frame(width: 20, height: 20)
                         .padding()
                 }
             }
