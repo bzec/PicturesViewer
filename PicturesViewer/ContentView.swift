@@ -17,6 +17,8 @@ struct ContentView: View {
     var body: some View {
         VStack{
             ListPicturesView(images: $images, imageIndex: $imageIndex)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .padding()
             VStack {
                     ButtonView(images: $images, imageIndex: $imageIndex) {
                         saveAction()
@@ -31,7 +33,7 @@ struct ContentView: View {
                     ButtonShare(images: $images)
             }
         }.frame(maxHeight: .infinity, alignment: .bottom)
-         .padding()
+            .padding()
     }
     
     func resetList() {
