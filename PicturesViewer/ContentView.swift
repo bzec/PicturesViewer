@@ -22,7 +22,7 @@ struct ContentView: View {
                         saveAction()
                     }
                     Button(action: resetList) {
-                      Label("Supprimer la liste", systemImage: "clear.fill")
+                      Label("Clear list", systemImage: "clear.fill")
                     }.disabled(images.count == 0)
                     .tint(.blue)
                     .buttonStyle(.borderedProminent)
